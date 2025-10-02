@@ -13,45 +13,84 @@
         body {
             font-family: 'Cairo', sans-serif;
             text-align: center;
-            background-color: #f0f4f8; 
+            background-color: #FFFAFA; /* كريمي فاتح */
             color: #333;
             padding: 20px;
             margin: 0;
             user-select: none;
+            position: relative; 
         }
 
-        .header {
-            margin-bottom: 40px;
+        /* تنسيق قسم العنوان والإرشادات */
+        .header-content {
+            margin-bottom: 30px;
+            padding: 15px 0;
+            border-bottom: 4px solid #9C6CAE; /* خط فاصل أسفل العنوان */
         }
-
-        /* تنسيق السطر العلوي الجديد */
-        .top-motto {
-            font-size: 2.5em;
+        
+        /* ===== 🌟 تنسيق العنوان الرئيسي الجديد (في سطرين) 🌟 ===== */
+        .main-title-line-one {
+            color: #9C6CAE; /* بنفسجي لافندر */
+            font-size: 2.4em; /* تم تصغير الخط من 2.8em */
             font-weight: 700;
-            color: #E65100; /* لون برتقالي مميز */
-            margin-bottom: 10px;
             display: block;
+            margin-bottom: 5px; 
         }
+        
+        .main-title-line-two {
+            color: #333; 
+            font-size: 1.8em; /* تم تصغير الخط من 2.2em */
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        /* إعادة تعريف لون البيانات والمعلومات في العنوان */
+        .highlight-title-info {
+            color: #FF6347; /* اللون الأحمر الفاتح */
+        }
+        /* ==================================================== */
 
-        h1 {
-            color: #8E24AA; 
-            font-size: 2.2em; 
-            border-bottom: 4px solid #8E24AA;
+        /* تنسيق الجملة الجديدة (هيا نلعب ونتعلم) */
+        .play-motto {
+            font-size: 2.5em; /* حجم كبير */
+            color: #008080; /* لون تركواز داكن */
+            margin-top: 15px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            padding: 10px 20px;
+            background-color: #E0F8F8; /* خلفية فاتحة للتركيز */
+            border-radius: 12px;
             display: inline-block;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* تكبير خط التعليمات */
-        p.description {
-            font-size: 1.4em; 
+        /* تنسيق النص الإرشادي (تم تكبيره وجعله بارزاً) */
+        p.instruction {
+            font-size: 1.6em; 
             color: #333;
             font-weight: 700; 
-            margin-bottom: 25px;
-            padding: 10px;
-            background-color: #fff;
+            padding: 15px;
+            background-color: #E6F3FF; /* لون سماوي فاتح للخلفية للتركيز */
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 25px auto;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* تنسيق السطر الأول من الإرشاد */
+        .instruction-line-one {
+            margin-bottom: 5px; /* مسافة بين السطرين */
+        }
+
+        /* تنسيق الكلمات المستهدفة (البيانات، المعلومات) في الإرشادات */
+        .highlight-data-info {
+            color: #FF6347; /* اللون الأحمر الفاتح (Tomato) */
+            font-size: 1.1em; 
         }
 
         #game-area {
@@ -74,57 +113,74 @@
 
         /* تصميم عمود بطاقات البازل (الأيمن) */
         #puzzle-pieces {
-            background-color: #f3e5f5; 
+            background-color: #F5F0F8; 
             order: -1; 
         }
 
         /* تصميم عمود البيانات (الأوسط) */
         #data-column {
-            background-color: #fffde7; 
+            background-color: #FEECEF; 
         }
 
         /* تصميم عمود المعلومات (الأيسر) */
         #info-column {
-            background-color: #e0f2f1; 
-        }
-
-        .column h2 {
-            font-size: 1.8em;
-            margin-top: 0;
-            padding-bottom: 10px;
-            border-bottom: 2px solid;
-            margin-bottom: 20px;
+            background-color: #E0F8E8; 
         }
         
+        /* تنسيق عناوين الأعمدة (بازل، البيانات، المعلومات) */
+        .column h2 {
+            font-size: 2.2em; 
+            margin-top: 0;
+            padding: 15px 10px; 
+            border-radius: 8px; 
+            margin-bottom: 25px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-bottom: none; 
+        }
+
         #puzzle-pieces h2 {
-            color: #8E24AA;
-            border-color: #8E24AA;
+            color: white; 
+            background-color: #9C6CAE; 
+            box-shadow: 0 4px 6px rgba(156, 108, 174, 0.5);
         }
 
         #data-column h2 {
-            color: #FFB300; 
-            border-color: #FFB300;
+            color: white; 
+            background-color: #B03A58; 
+            box-shadow: 0 4px 6px rgba(176, 58, 88, 0.5);
         }
 
         #info-column h2 {
-            color: #00897B; 
-            border-color: #00897B;
+            color: white; 
+            background-color: #00B5AD; 
+            box-shadow: 0 4px 6px rgba(0, 181, 173, 0.5);
         }
-
-        /* تكبير خط قطعة البازل (البطاقة) وجعله غامقًا */
+        
+        /* وصف العمود */
+        .column-desc {
+            font-size: 1.15em;
+            font-weight: 500;
+            margin-bottom: 20px;
+            padding: 10px 5px;
+            line-height: 1.5;
+            border-radius: 8px;
+        }
+        
+        /* تنسيق بطاقات البازل */
         .piece {
             background-color: #ffffff;
             border: 2px solid #ccc;
             border-radius: 8px;
             padding: 18px 15px; 
-            margin-bottom: 12px;
-            font-size: 1.15em; 
-            font-weight: bold; /* جعله غامقًا */
+            font-size: 1.3em; 
+            font-weight: bold;
             cursor: grab;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
             transition: transform 0.2s, box-shadow 0.2s;
             text-align: right;
             z-index: 10;
+            color: #111; 
+            margin-bottom: 12px;
         }
 
         .piece:active {
@@ -145,20 +201,27 @@
             animation: match-flash 0.5s;
         }
 
+        .wrong-drop-flash {
+            background-color: #f44336 !important; /* أحمر */
+            color: white !important;
+            box-shadow: 0 0 15px rgba(244, 67, 54, 0.8);
+            transition: none;
+        }
+        
         .status-bar {
             margin-top: 30px;
             padding: 15px;
             font-size: 1.3em;
             font-weight: bold;
             border-radius: 10px;
-            background-color: #ffcc80; 
-            color: #d84315;
+            background-color: #FFE8D6; 
+            color: #A0522D; 
             display: inline-block;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         /* شاشة إكمال اللعبة (Completion Message) */
-        #completion-message {
+       #completion-message {
             position: fixed;
             top: 0;
             left: 0;
@@ -181,7 +244,7 @@
         }
 
         .completion-message-content {
-            background-color: #8E24AA;
+            background-color: #9C6CAE; 
             padding: 25px 40px;
             border-radius: 15px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -190,23 +253,23 @@
         .compliment {
             font-size: 1.3em; 
             font-weight: bold;
-            color: #FFEB3B; 
+            color: #FFC72C; 
             margin-top: 15px;
             line-height: 1.4;
         }
 
-        /* نافذة التغذية الراجعة (Feedback Pop-up) - جديدة */
+        /* نافذة التغذية الراجعة (Feedback Pop-up) */
         #feedback-popup {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #dc3545; /* أحمر للخطأ */
+            background-color: #F08080; 
             color: white;
             padding: 25px 40px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            z-index: 200; /* أعلى من كل شيء */
+            z-index: 200; 
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s, visibility 0.3s;
@@ -228,16 +291,16 @@
             cursor: pointer;
             border: none;
             border-radius: 50px; 
-            background-color: #1a73e8; 
+            background-color: #B03A58; 
             color: white;
             font-weight: bold;
             transition: background-color 0.3s, transform 0.1s;
-            box-shadow: 0 8px 15px rgba(26, 115, 232, 0.4);
+            box-shadow: 0 8px 15px rgba(176, 58, 88, 0.4); 
             margin-top: 25px;
         }
 
         .restart-button:hover {
-            background-color: #0c63d5;
+            background-color: #9C2C4A; 
             transform: translateY(-2px);
         }
         
@@ -254,113 +317,98 @@
             margin: 5px 0;
         }
         
+        /* تنسيق تكبير أسماء المعلمة والقائدة */
         .designer {
             font-weight: bold;
             color: #007bff;
-            font-size: 1.1em;
+            font-size: 1.8em; 
+            padding: 5px;
+            display: block;
         }
-        
+
         .director {
             color: #38761d;
             font-style: italic;
-            font-size: 1.1em;
+            font-size: 2em; /* تم تكبير الخط */
+            padding: 5px;
+            display: block;
         }
     </style>
 </head>
 <body>
+    
+    <h2 class="play-motto">👋 هيا ،،، نلعب ،،، ونتعلم 📚</h2>
 
-    <div class="header">
-        <span class="top-motto">🏆 هيا نلعب ونتعلم ،،، 🎉</span>
-        
-        <h1>لعبة بازل الفرق بين البيانات و المعلومات</h1>
-        
-        <p class="description">اسحب كل خاصية من عمود "البازل" وضعها في العمود المناسب لها (البيانات أو المعلومات).</p>
-        
-        <div class="status-bar" id="status-bar">البطاقات المتبقية: 8</div>
+    <div class="header-content">
+        <h1 style="margin: 0;">
+            <span class="main-title-line-one">🧩 لعبة بازل 🧠</span>
+            <span class="main-title-line-two">
+                الفرق بين 
+                <span class="highlight-title-info">البيانات</span>
+                و
+                <span class="highlight-title-info">المعلومات</span>
+            </span>
+        </h1>
     </div>
-
+    
+    <p class="instruction">
+        <span class="instruction-line-one">اسحب كل **بطاقة** من عمود "البازل" وضعها في العمود المناسب لها:</span>
+        <span class="instruction-line-two"> (<span class="highlight-data-info">البيانات</span>) أو (<span class="highlight-data-info">المعلومات</span>).</span>
+    </p>
+    
+    <div class="status-bar" id="status-bar">البطاقات المتبقية: 8</div>
+    
     <div id="game-area">
         
         <div id="data-column" class="column" data-target="البيانات">
             <h2>البيانات</h2>
+            <p class="column-desc">**قيم لا تعطي معنى وهي منفردة.**</p>
         </div>
 
         <div id="info-column" class="column" data-target="المعلومات">
             <h2>المعلومات</h2>
+            <p class="column-desc">**البيانات المنظمة والمترابطة** في جدول أو بطاقة تصبح معلومات. وهي النتائج المفيدة الناتجة عن **معالجة وتنظيم البيانات**.</p>
         </div>
         
         <div id="puzzle-pieces" class="column">
             <h2>البازل</h2>
-            </div>
+        </div>
     </div>
-
+    
     <div id="completion-message">
         <div class="completion-message-content">
             <h2>🥳 إنجاز رائع! 🥳</h2>
-            <p>لقد قمت بفرز جميع الخصائص بنجاح وتميز.</p>
+            <p>لقد قمت بفرز جميع القيم بنجاح وتميز.</p>
             <p class="compliment">أبدعتي يا مبرمجتي الصغيرة<br>معلمتك: منار المكتوم</p>
             <button class="restart-button" onclick="window.location.reload()">إعادة اللعب</button>
         </div>
     </div>
     
     <div id="feedback-popup">
-        </div>
+    </div>
     
     <div class="footer-credits">
         <p class="designer">تصميم المعلمة: منار المكتوم</p>
-        <p class="director">مديرة المدرسة: بدرية الحربي</p>
+        <p class="director">قائدة المدرسة: بدرية الحربي</p>
     </div>
 
     <script>
         // ====================================
         // JavaScript Logic (منطق اللعبة)
         // ====================================
-
-        // البيانات الخاصة بك: الخاصية + الإجابة الصحيحة
+        
         const rawData = [
-            // خصائص البيانات (لأغراض التغذية الراجعة، نحتاج لتضمين وجه المقارنة)
-            { 
-                content: "هي الحقائق الأولية... ولا تعطي معنى وهي منفردة", 
-                correctTarget: "البيانات", 
-                comparison: "التعريف" 
-            },
-            { 
-                content: "هي مدخلات لجهاز الحاسب", 
-                correctTarget: "البيانات",
-                comparison: "الطبيعة" 
-            },
-            { 
-                content: "غير منظمة", 
-                correctTarget: "البيانات",
-                comparison: "التنظيم" 
-            },
-            { 
-                content: "من الصعب فهمها لأنها غير مترابطة", 
-                correctTarget: "البيانات",
-                comparison: "الفهم" 
-            },
+            // البيانات (قيم أولية بدون سياق) - 4 قطع
+            { content: "شاشة", correctTarget: "البيانات", hint: "قيمة أولية" },
+            { content: "8/03/2022", correctTarget: "البيانات", hint: "قيمة أولية" },
+            { content: "4", correctTarget: "البيانات", hint: "قيمة أولية" },
+            { content: "13", correctTarget: "البيانات", hint: "قيمة أولية" },
             
-            // خصائص المعلومات
-            { 
-                content: "هي النتائج المفيدة الناتجة عن معالجة وتنظيم البيانات", 
-                correctTarget: "المعلومات",
-                comparison: "التعريف" 
-            },
-            { 
-                content: "هي المخرجات الناتجة من معالجة وتنظيم جهاز الحاسب للبيانات", 
-                correctTarget: "المعلومات",
-                comparison: "الطبيعة" 
-            },
-            { 
-                content: "منظمة", 
-                correctTarget: "المعلومات",
-                comparison: "التنظيم" 
-            },
-            { 
-                content: "من السهل فهمها لأنها مترابطة", 
-                correctTarget: "المعلومات",
-                comparison: "الفهم" 
-            }
+            // المعلومات (قيم معنونة بسياق) - 4 قطع
+            { content: "الجهاز: شاشة", correctTarget: "المعلومات", hint: "قيمة بسياق" },
+            { content: "تاريخ التسجيل: 8/03/2022", correctTarget: "المعلومات", hint: "قيمة بسياق" },
+            { content: "الكمية: 4", correctTarget: "المعلومات", hint: "قيمة بسياق" },
+            { content: "الوزن (بالكيلوجرام): 13", correctTarget: "المعلومات", hint: "قيمة بسياق" }
         ];
 
         const puzzlePiecesContainer = document.getElementById('puzzle-pieces');
@@ -368,12 +416,11 @@
         const infoColumn = document.getElementById('info-column');
         const statusBar = document.getElementById('status-bar');
         const completionMessage = document.getElementById('completion-message');
-        const feedbackPopup = document.getElementById('feedback-popup'); // عنصر التغذية الراجعة
+        const feedbackPopup = document.getElementById('feedback-popup');
         
         let piecesPlaced = 0;
         const totalPieces = rawData.length;
 
-        // دالة لخلط المصفوفة (خوارزمية فيشر-ييتس)
         function shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -381,7 +428,6 @@
             }
         }
 
-        // دالة إنشاء قطع البازل
         function initGame() {
             shuffle(rawData); 
             
@@ -391,14 +437,13 @@
                 piece.textContent = item.content;
                 piece.setAttribute('draggable', true);
                 piece.dataset.correctTarget = item.correctTarget;
-                piece.dataset.comparison = item.comparison; // إضافة وجه المقارنة
+                piece.dataset.hint = item.hint;
                 piece.dataset.id = index;
 
                 piece.addEventListener('dragstart', dragStart);
                 puzzlePiecesContainer.appendChild(piece);
             });
             
-            // إعداد مناطق الإسقاط
             [dataColumn, infoColumn].forEach(column => {
                 column.addEventListener('dragover', dragOver);
                 column.addEventListener('dragenter', dragEnter);
@@ -440,7 +485,6 @@
             
             const dropTarget = this.dataset.target;
             const correctTarget = draggedElement.dataset.correctTarget;
-            const comparisonPoint = draggedElement.dataset.comparison;
             const originalParent = puzzlePiecesContainer; 
 
             if (dropTarget === correctTarget) {
@@ -464,24 +508,21 @@
                 // 1. تحديد رسالة الخطأ
                 let feedbackMessage;
                 if (correctTarget === 'البيانات') {
-                    feedbackMessage = `هذه الخاصية تتعلق بـ **البيانات**، لأنها تصف وجه المقارنة: **${comparisonPoint}**، وهي خاصية تابعة للبيانات.`;
+                    feedbackMessage = `<strong>خطأ:</strong> هذه القيمة هي <strong>بيانات أولية</strong> ولا تعطي معنى منفردة، يجب أن تكون في عمود البيانات.`;
                 } else { // correctTarget === 'المعلومات'
-                    feedbackMessage = `هذه الخاصية تتعلق بـ **المعلومات**، لأنها تصف وجه المقارنة: **${comparisonPoint}**، وهي خاصية تابعة للمعلومات.`;
+                    feedbackMessage = `<strong>خطأ:</strong> هذه القيمة هي <strong>معلومات</strong> لأنها قيمة منظمة وذات سياق، يجب أن تكون في عمود المعلومات.`;
                 }
                 showFeedbackPopup(feedbackMessage);
 
-                // 2. وميض الخطأ وإعادة البطاقة
-                const originalBg = draggedElement.style.backgroundColor;
-                const originalColor = draggedElement.style.color;
+                // 2. وميض الخطأ وإعادة البطاقة باستخدام الفئة الجديدة
+                draggedElement.classList.add('wrong-drop-flash');
                 
-                draggedElement.style.backgroundColor = '#f44336'; /* أحمر */
-                draggedElement.style.color = 'white';
-                
+                // إرجاع البطاقة إلى عمود البازل
                 originalParent.appendChild(draggedElement);
                 
+                // إزالة فئة الوميض بعد فترة قصيرة
                 setTimeout(() => {
-                    draggedElement.style.backgroundColor = originalBg;
-                    draggedElement.style.color = originalColor;
+                    draggedElement.classList.remove('wrong-drop-flash');
                 }, 700);
             }
         }
@@ -489,7 +530,7 @@
         // دالة إظهار نافذة التغذية الراجعة
         function showFeedbackPopup(message) {
             feedbackPopup.innerHTML = `
-                <p style="font-size: 1.5em; margin-bottom: 10px;">❌ خطأ، انتبه!</p>
+                <p style="font-size: 1.5em; margin-bottom: 10px;">❌ محاولة جيدة! ❌</p>
                 <p>${message}</p>
             `;
             feedbackPopup.classList.add('visible');
