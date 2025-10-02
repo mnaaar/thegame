@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة بازل الفرق بين البيانات والمعلومات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==================================== */
+        /* CSS Styles (التنسيقات) */
+        /* ==================================== */
+        body {
+            font-family: 'Cairo', sans-serif;
+            text-align: center;
+            background-color: #FFFAFA; /* كريمي فاتح */
+            color: #333;
+            padding: 20px;
+            margin: 0;
+            user-select: none;
+            position: relative; 
+        }
+
+        /* تنسيق قسم العنوان والإرشادات */
+        .header-content {
+            margin-bottom: 30px;
+            padding: 15px 0;
+            border-bottom: 4px solid #9C6CAE; /* خط فاصل أسفل العنوان */
+        }
+        
+        /* ===== 🌟 تنسيق العنوان الرئيسي الجديد (في سطرين) 🌟 ===== */
+        .main-title-line-one {
+            color: #9C6CAE; /* بنفسجي لافندر */
+            font-size: 2.4em; /* تم تصغير الخط من 2.8em */
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px; 
+        }
+        
+        .main-title-line-two {
+            color: #333; 
+            font-size: 1.8em; /* تم تصغير الخط من 2.2em */
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        /* إعادة تعريف لون البيانات والمعلومات في العنوان */
+        .highlight-title-info {
+            color: #FF6347; /* اللون الأحمر الفاتح */
+        }
+        /* ==================================================== */
+
+        /* تنسيق الجملة الجديدة (هيا نلعب ونتعلم) */
+        .play-motto {
+            font-size: 2.5em; /* حجم كبير */
+            color: #008080; /* لون تركواز داكن */
+            margin-top: 15px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            padding: 10px 20px;
+            background-color: #E0F8F8; /* خلفية فاتحة للتركيز */
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* تنسيق النص الإرشادي (تم تكبيره وجعله بارزاً) */
+        p.instruction {
+            font-size: 1.6em; 
+            color: #333;
+            font-weight: 700; 
+            padding: 15px;
+            background-color: #E6F3FF; /* لون سماوي فاتح للخلفية للتركيز */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 25px auto;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* تنسيق السطر الأول من الإرشاد */
+        .instruction-line-one {
+            margin-bottom: 5px; /* مسافة بين السطرين */
+        }
+
+        /* تنسيق الكلمات المستهدفة (البيانات، المعلومات) في الإرشادات */
+        .highlight-data-info {
+            color: #FF6347; /* اللون الأحمر الفاتح (Tomato) */
+            font-size: 1.1em; 
+        }
+
+        #game-area {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .column {
+            flex-basis: 30%;
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            min-height: 500px; 
+            transition: background-color 0.3s;
+        }
+
+        /* تصميم عمود بطاقات البازل (الأيمن) */
+        #puzzle-pieces {
+            background-color: #F5F0F8; 
+            order: -1; 
+        }
+
+        /* تصميم عمود البيانات (الأوسط) */
+        #data-column {
+            background-color: #FEECEF; 
+        }
+
+        /* تصميم عمود المعلومات (الأيسر) */
+        #info-column {
+            background-color: #E0F8E8; 
+        }
+        
+        /* تنسيق عناوين الأعمدة (بازل، البيانات، المعلومات) */
+        .column h2 {
+            font-size: 2.2em; 
+            margin-top: 0;
+            padding: 15px 10px; 
+            border-radius: 8px; 
+            margin-bottom: 25px; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-bottom: none; 
+        }
+
+        #puzzle-pieces h2 {
+            color: white; 
+            background-color: #9C6CAE; 
+            box-shadow: 0 4px 6px rgba(156, 108, 174, 0.5);
+        }
+
+        #data-column h2 {
+            color: white; 
+            background-color: #B03A58; 
+            box-shadow: 0 4px 6px rgba(176, 58, 88, 0.5);
+        }
+
+        #info-column h2 {
+            color: white; 
+            background-color: #00B5AD; 
+            box-shadow: 0 4px 6px rgba(0, 181, 173, 0.5);
+        }
+        
+        /* وصف العمود */
+        .column-desc {
+            font-size: 1.15em;
+            font-weight: 500;
+            margin-bottom: 20px;
+            padding: 10px 5px;
+            line-height: 1.5;
+            border-radius: 8px;
+        }
+        
+        /* تنسيق بطاقات البازل */
+        .piece {
+            background-color: #ffffff;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            padding: 18px 15px; 
+            font-size: 1.3em; 
+            font-weight: bold;
+            cursor: grab;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: right;
+            z-index: 10;
+            color: #111; 
+            margin-bottom: 12px;
+        }
+
+        .piece:active {
+            cursor: grabbing;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .hovered {
+            transform: scale(1.01);
+            border: 2px dashed #4CAF50;
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+        }
+        
+        .correct-drop {
+            background-color: #4CAF50 !important; 
+            color: white;
+            animation: match-flash 0.5s;
+        }
+
+        .wrong-drop-flash {
+            background-color: #f44336 !important; /* أحمر */
+            color: white !important;
+            box-shadow: 0 0 15px rgba(244, 67, 54, 0.8);
+            transition: none;
+        }
+        
+        .status-bar {
+            margin-top: 30px;
+            padding: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 10px;
+            background-color: #FFE8D6; 
+            color: #A0522D; 
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* شاشة إكمال اللعبة (Completion Message) */
+       #completion-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            color: white;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        #completion-message.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .completion-message-content {
+            background-color: #9C6CAE; 
+            padding: 25px 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .compliment {
+            font-size: 1.3em; 
+            font-weight: bold;
+            color: #FFC72C; 
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+
+        /* نافذة التغذية الراجعة (Feedback Pop-up) */
+        #feedback-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #F08080; 
+            color: white;
+            padding: 25px 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 200; 
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            font-size: 1.2em;
+            max-width: 400px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        #feedback-popup.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* تنسيق زر إعادة اللعب */
+        .restart-button {
+            padding: 18px 40px; 
+            font-size: 1.5em; 
+            cursor: pointer;
+            border: none;
+            border-radius: 50px; 
+            background-color: #B03A58; 
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.1s;
+            box-shadow: 0 8px 15px rgba(176, 58, 88, 0.4); 
+            margin-top: 25px;
+        }
+
+        .restart-button:hover {
+            background-color: #9C2C4A; 
+            transform: translateY(-2px);
+        }
+        
+        /* قسم التذييل (الـ Footer) */
+        .footer-credits {
+            margin-top: 50px;
+            padding: 20px;
+            border-top: 2px solid #ccc;
+            color: #5f6368;
+            font-size: 1.2em; 
+        }
+        
+        .footer-credits p {
+            margin: 5px 0;
+        }
+        
+        /* تنسيق تكبير أسماء المعلمة والقائدة */
+        .designer {
+            font-weight: bold;
+            color: #007bff;
+            font-size: 1.8em; 
+            padding: 5px;
+            display: block;
+        }
+
+        .director {
+            color: #38761d;
+            font-style: italic;
+            font-size: 2em; /* تم تكبير الخط */
+            padding: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    
+    <h2 class="play-motto">👋 هيا ،،، نلعب ،،، ونتعلم 📚</h2>
+
+    <div class="header-content">
+        <h1 style="margin: 0;">
+            <span class="main-title-line-one">🧩 لعبة بازل 🧠</span>
+            <span class="main-title-line-two">
+                الفرق بين 
+                <span class="highlight-title-info">البيانات</span>
+                و
+                <span class="highlight-title-info">المعلومات</span>
+            </span>
+        </h1>
+    </div>
+    
+    <p class="instruction">
+        <span class="instruction-line-one">اسحب كل **بطاقة** من عمود "البازل" وضعها في العمود المناسب لها:</span>
+        <span class="instruction-line-two"> (<span class="highlight-data-info">البيانات</span>) أو (<span class="highlight-data-info">المعلومات</span>).</span>
+    </p>
+    
+    <div class="status-bar" id="status-bar">البطاقات المتبقية: 8</div>
+    
+    <div id="game-area">
+        
+        <div id="data-column" class="column" data-target="البيانات">
+            <h2>البيانات</h2>
+            <p class="column-desc">**قيم لا تعطي معنى وهي منفردة.**</p>
+        </div>
+
+        <div id="info-column" class="column" data-target="المعلومات">
+            <h2>المعلومات</h2>
+            <p class="column-desc">**البيانات المنظمة والمترابطة** في جدول أو بطاقة تصبح معلومات. وهي النتائج المفيدة الناتجة عن **معالجة وتنظيم البيانات**.</p>
+        </div>
+        
+        <div id="puzzle-pieces" class="column">
+            <h2>البازل</h2>
+        </div>
+    </div>
+    
+    <div id="completion-message">
+        <div class="completion-message-content">
+            <h2>🥳 إنجاز رائع! 🥳</h2>
+            <p>لقد قمت بفرز جميع القيم بنجاح وتميز.</p>
+            <p class="compliment">أبدعتي يا مبرمجتي الصغيرة<br>معلمتك: منار المكتوم</p>
+            <button class="restart-button" onclick="window.location.reload()">إعادة اللعب</button>
+        </div>
+    </div>
+    
+    <div id="feedback-popup">
+    </div>
+    
+    <div class="footer-credits">
+        <p class="designer">تصميم المعلمة: منار المكتوم</p>
+        <p class="director">قائدة المدرسة: بدرية الحربي</p>
+    </div>
+
+    <script>
+        // ====================================
+        // JavaScript Logic (منطق اللعبة)
+        // ====================================
+        
+        const rawData = [
+            // البيانات (قيم أولية بدون سياق) - 4 قطع
+            { content: "شاشة", correctTarget: "البيانات", hint: "قيمة أولية" },
+            { content: "8/03/2022", correctTarget: "البيانات", hint: "قيمة أولية" },
+            { content: "4", correctTarget: "البيانات", hint: "قيمة أولية" },
+            { content: "13", correctTarget: "البيانات", hint: "قيمة أولية" },
+            
+            // المعلومات (قيم معنونة بسياق) - 4 قطع
+            { content: "الجهاز: شاشة", correctTarget: "المعلومات", hint: "قيمة بسياق" },
+            { content: "تاريخ التسجيل: 8/03/2022", correctTarget: "المعلومات", hint: "قيمة بسياق" },
+            { content: "الكمية: 4", correctTarget: "المعلومات", hint: "قيمة بسياق" },
+            { content: "الوزن (بالكيلوجرام): 13", correctTarget: "المعلومات", hint: "قيمة بسياق" }
+        ];
+
+        const puzzlePiecesContainer = document.getElementById('puzzle-pieces');
+        const dataColumn = document.getElementById('data-column');
+        const infoColumn = document.getElementById('info-column');
+        const statusBar = document.getElementById('status-bar');
+        const completionMessage = document.getElementById('completion-message');
+        const feedbackPopup = document.getElementById('feedback-popup');
+        
+        let piecesPlaced = 0;
+        const totalPieces = rawData.length;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function initGame() {
+            shuffle(rawData); 
+            
+            rawData.forEach((item, index) => {
+                const piece = document.createElement('div');
+                piece.classList.add('piece');
+                piece.textContent = item.content;
+                piece.setAttribute('draggable', true);
+                piece.dataset.correctTarget = item.correctTarget;
+                piece.dataset.hint = item.hint;
+                piece.dataset.id = index;
+
+                piece.addEventListener('dragstart', dragStart);
+                puzzlePiecesContainer.appendChild(piece);
+            });
+            
+            [dataColumn, infoColumn].forEach(column => {
+                column.addEventListener('dragover', dragOver);
+                column.addEventListener('dragenter', dragEnter);
+                column.addEventListener('dragleave', dragLeave);
+                column.addEventListener('drop', drop);
+            });
+            
+            updateStatusBar();
+        }
+
+        function dragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.dataset.id);
+            setTimeout(() => e.target.style.opacity = '0.4', 0);
+        }
+
+        function dragOver(e) {
+            e.preventDefault();
+        }
+
+        function dragEnter(e) {
+            e.preventDefault();
+            this.classList.add('hovered');
+        }
+
+        function dragLeave() {
+            this.classList.remove('hovered');
+        }
+
+        function drop(e) {
+            e.preventDefault();
+            this.classList.remove('hovered');
+            
+            const id = e.dataTransfer.getData('text/plain');
+            const draggedElement = document.querySelector(`[data-id="${id}"]`);
+            
+            if (!draggedElement) return;
+
+            draggedElement.style.opacity = '1';
+            
+            const dropTarget = this.dataset.target;
+            const correctTarget = draggedElement.dataset.correctTarget;
+            const originalParent = puzzlePiecesContainer; 
+
+            if (dropTarget === correctTarget) {
+                // مطابقة صحيحة
+                draggedElement.classList.add('correct-drop');
+                draggedElement.setAttribute('draggable', false);
+                draggedElement.style.cursor = 'default';
+                
+                this.appendChild(draggedElement);
+                
+                piecesPlaced++;
+                updateStatusBar();
+                
+                if (piecesPlaced === totalPieces) {
+                    showCompletionScreen();
+                }
+
+            } else {
+                // مطابقة خاطئة: إظهار التغذية الراجعة وإعادة البطاقة
+                
+                // 1. تحديد رسالة الخطأ
+                let feedbackMessage;
+                if (correctTarget === 'البيانات') {
+                    feedbackMessage = `<strong>خطأ:</strong> هذه القيمة هي <strong>بيانات أولية</strong> ولا تعطي معنى منفردة، يجب أن تكون في عمود البيانات.`;
+                } else { // correctTarget === 'المعلومات'
+                    feedbackMessage = `<strong>خطأ:</strong> هذه القيمة هي <strong>معلومات</strong> لأنها قيمة منظمة وذات سياق، يجب أن تكون في عمود المعلومات.`;
+                }
+                showFeedbackPopup(feedbackMessage);
+
+                // 2. وميض الخطأ وإعادة البطاقة باستخدام الفئة الجديدة
+                draggedElement.classList.add('wrong-drop-flash');
+                
+                // إرجاع البطاقة إلى عمود البازل
+                originalParent.appendChild(draggedElement);
+                
+                // إزالة فئة الوميض بعد فترة قصيرة
+                setTimeout(() => {
+                    draggedElement.classList.remove('wrong-drop-flash');
+                }, 700);
+            }
+        }
+        
+        // دالة إظهار نافذة التغذية الراجعة
+        function showFeedbackPopup(message) {
+            feedbackPopup.innerHTML = `
+                <p style="font-size: 1.5em; margin-bottom: 10px;">❌ محاولة جيدة! ❌</p>
+                <p>${message}</p>
+            `;
+            feedbackPopup.classList.add('visible');
+            
+            // إخفاء النافذة بعد 5 ثواني
+            setTimeout(() => {
+                feedbackPopup.classList.remove('visible');
+            }, 5000);
+        }
+
+
+        function updateStatusBar() {
+            const remaining = totalPieces - piecesPlaced;
+            statusBar.textContent = `البطاقات المتبقية: ${remaining}`;
+            
+            if(remaining === 0) {
+                 puzzlePiecesContainer.style.opacity = 0.5;
+            } else {
+                 puzzlePiecesContainer.style.opacity = 1;
+            }
+        }
+
+        function showCompletionScreen() {
+            completionMessage.classList.add('show');
+        }
+
+        // بدء اللعبة
+        document.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>
